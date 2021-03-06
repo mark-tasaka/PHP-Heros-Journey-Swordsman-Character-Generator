@@ -4,6 +4,12 @@ The Swordsman Character Generator generates a random Hero’s Journey character 
 ------------------
 
 
+
+Update 1.01: 2021-03-06
+
+Updates to hjSwordsman.php, archetype.php, lineage.php and weapons.php.
+
+
 Initial commit: 2021-03-05
 
 The initial commit for the Swordsman Character Generator.
