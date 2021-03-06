@@ -84,17 +84,17 @@
 
         $lineageDefenseBonus = lineageDefenseBonus($lineageNumber);
 
-        $forestry = forestry($level);
+        $acrobatics = acrobatics($level);
 
 
         $abilityScoreArray = array();
         $abilityScoreArray = getAbilityScores($lineageNumber);
 
         $might = $abilityScoreArray[0];
-        $might = minimumClassScore($might);
+        $might = minimumClassScore6($might);
         $finesse = $abilityScoreArray[1];
+        $finesse = minimumClassScore($finesse);
         $resolve = $abilityScoreArray[2];
-        $resolve = minimumClassScore($resolve);
         $insight = $abilityScoreArray[3];
         $bearing = $abilityScoreArray[4];
         $weal = $abilityScoreArray[5];
@@ -106,10 +106,9 @@
         $bearingMod = getAbilityScoreModString($bearing);
         $wealMod = getAbilityScoreModString($weal);
 
-        $xpBonus = getXPBonus($resolve);
+        $xpBonus = getXPBonus($finesse);
         $saveMessage = saveMessage();
-        $naturalWanderer = naturalWanderer($insight, $level);
-        $twoWeaponFighting = twoWeaponFighting($finesse);
+        $florentine = florentineStyle($finesse);
 
 
         $xpNextLevel = getXPNextLevel ($level);
@@ -141,7 +140,9 @@
         $shieldDefense = getShield($shield)[1];
         $shieldWeight = getShield($shield)[2];
 
-        $defense = 10 + $shieldDefense + $finesseMod + $lineageDefenseBonus;
+        $swordsmanDefenseBonus = getDefenseBonus($level);
+
+        $defense = 10 + $swordsmanDefenseBonus + $shieldDefense + $finesseMod + $lineageDefenseBonus;
 
 
         $lineageReduction = lineageReduction($lineageNumber);
@@ -508,10 +509,9 @@
        
         <span id="archetype">
            <?php
-                echo $forestry;
+                echo $acrobatics;
                 echo $saveMessage;
-                echo $naturalWanderer;
-                echo $twoWeaponFighting;
+                echo $florentine;
                 echo $xpBonus;
            ?>
         </span>

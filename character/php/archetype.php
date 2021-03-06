@@ -64,31 +64,31 @@ function getEndurance($level, $resolveMod)
 
 function getAttackBonus($level)
 {
-    $bonus = 0;
+    $bonus = 1;
 
-    if($level == 2)
-    {
-        $bonus = 1;
-    }    
-    else if($level >= 3 && $level <= 4)
+    if($level == 3)
     {
         $bonus = 2;
-    }
-    else if($level == 5)
+    }    
+    else if($level >= 4 && $level <= 5)
     {
         $bonus = 3;
     }
-    else if($level >= 6 && $level <= 7)
+    else if($level == 6)
     {
         $bonus = 4;
     }
-    else if($level == 8)
+    else if($level >= 7 && $level <= 8)
     {
         $bonus = 5;
     }
-    else if($level >= 9)
+    else if($level == 9)
     {
         $bonus = 6;
+    }
+    else if($level == 10)
+    {
+        $bonus = 7;
     }
     else
     {
@@ -109,11 +109,22 @@ function minimumClassScore($score)
 }
 
 
+function minimumClassScore6($score)
+{
+    if($score < 6)
+    {
+        $score = 6;
+    }
+
+    return $score;
+}
+
+
 
 function getSavingThrow($level)
 {
     $levelInt = (int)$level;
-    $save = (17 - $levelInt);
+    $save = (16 - $levelInt);
 
     return $save;
 
@@ -133,71 +144,97 @@ function getXPBonus($abilityScore)
 
 function saveMessage()
 {
-    $message = "<span class='archetypeBold'>Saving Throw:</span> Advantage on saving throws made versus poisons and natural hazards.<br/><br/>";
+    $message = "<span class='archetypeBold'>Saving Throw:</span> Advantage on saving throws to avoid or reduce the effects of traps (mundane or magical).<br/><br/>";
 
     return $message;
 }
 
-
-function naturalWanderer($score, $level)
+function getDefenseBonus($level)
 {
-    $message = "";
+    $bonus = 0;
 
-    if($score >= 15)
+    if($level == "1")
     {
-        if($level >= 3 && $level <= 5)
-        {
-            $message = "<span class='archetypeBold'>Natural Wanderer:</span> Able to cast the <span class='archetypeItalic'>Errant Pilgrim</span> spell once per day.<br/><br/>";
-        }
-        else if($level >= 6 && $level <= 8)
-        {
-            $message = "<span class='archetypeBold'>Natural Wanderer:</span> Able to cast the <span class='archetypeItalic'>Errant Pilgrim</span> spell twice per day.<br/><br/>";
-        }
-        else if($level >= 9)
-        {
-            $message = "<span class='archetypeBold'>Natural Wanderer:</span> Able to cast the <span class='archetypeItalic'>Errant Pilgrim</span> spell three times per day.<br/><br/>";
-        }
-        else
-        {
-            $message = "";
-        }
+        $bonus = 3;
     }
-
-    return $message;
-}
-
-function twoWeaponFighting($score)
-{
-    $message = "";
-
-    if($score >= 15)
+    else if($level == "2" || $level == "3")
     {
-        $message = "<span class='archetypeBold'>Two-Weapon Fighting:</span> Able to fight with a one-handed melee weapon in each hand.";
+        $bonus = 4;
     }
-
-    return $message;
-}
-
-
-
-
-function forestry($level)
-{
-    if($level >= "1" && $level <= "3")
+    else if($level == "4" || $level == "5")
     {
-        $lore = "<span class='archetypeBold'>Forestry: 2</span><br/><br/><span class='archetypeBold'>Giant-Slayer:</span> Advantage of attack rolls against giant-kin and goblins.<br/><br/><span class='archetypeBold'>Ranger's Wealth:</span> Treasure and magical items are limited to what a Ranger could carry on their person.<br/><br/>";
+        $bonus = 5;
     }
-    else if($level >= "4" && $level <= "6")
+    else if($level == "6" || $level == "7")
     {
-        $lore = "<span class='archetypeBold'>Forestry: 3</span><br/><br/><span class='archetypeBold'>Giant-Slayer:</span> Advantage of attack rolls against giant-kin and goblins.<br/><br/><span class='archetypeBold'>Ranger's Wealth:</span> Treasure and magical items are limited to what a Ranger could carry on their person.<br/><br/>";
+        $bonus = 6;
     }
-    else if($level >= "7" && $level <= "9")
+    else if($level == "8" || $level == "9")
     {
-        $lore = "<span class='archetypeBold'>Forestry: 4</span><br/><br/><span class='archetypeBold'>Giant-Slayer:</span> Advantage of attack rolls against giant-kin and goblins.<br/><br/><span class='archetypeBold'>Ranger's Wealth:</span> Treasure and magical items are limited to what a Ranger could carry on their person.<br/><br/>";
+        $bonus = 7;
     }
     else
     {
-        $lore = "<span class='archetypeBold'>Forestry: 5</span><br/><br/><span class='archetypeBold'>Giant-Slayer:</span> Advantage of attack rolls against giant-kin and goblins.<br/><br/><span class='archetypeBold'>Ranger's Wealth:</span> Treasure and magical items are limited to what a Ranger could carry on their person.<br/><br/>";
+        $bonus = 8;
+    }
+
+    return $bonus;
+}
+
+function florentineStyle($score)
+{
+    $message = "";
+
+    if($score >= 15)
+    {
+        $message = "<span class='archetypeBold'>Florentine Style:</span> Can fight with a short blade or dagger in the off-hand.<br/><br/>";
+    }
+
+    return $message;
+}
+
+
+function acrobatics($level)
+{
+    if($level == "1")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 1</span><br/><br/><span class='archetypeBold'>Defense Bonus: +3</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "2")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 1</span><br/><br/><span class='archetypeBold'>Defense Bonus: +4</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "3")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 2</span><br/><br/><span class='archetypeBold'>Defense Bonus: +4</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "4")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 2</span><br/><br/><span class='archetypeBold'>Defense Bonus: +5</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "5")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 3</span><br/><br/><span class='archetypeBold'>Defense Bonus: +5</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "6")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 3</span><br/><br/><span class='archetypeBold'>Defense Bonus: +6</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "7")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 4</span><br/><br/><span class='archetypeBold'>Defense Bonus: +6</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "8")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 4</span><br/><br/><span class='archetypeBold'>Defense Bonus: +7</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else if($level == "9")
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 5</span><br/><br/><span class='archetypeBold'>Defense Bonus: +7</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
+    }
+    else
+    {
+        $lore = "<span class='archetypeBold'>Acrobatics: 5</span><br/><br/><span class='archetypeBold'>Defense Bonus</span><br/><br/><span class='archetypeBold'>Lightning Reflexes:</span> Can only be surprised on a roll of 1 on a d12.<br/><br/><span class='archetypeBold'>Master Swordsman:</span> +2 to hit and damage rolls when wielding a long or short blade.<br/><br/>";
     }
 
     return $lore;
