@@ -3,6 +3,19 @@ The Swordsman Character Generator generates a random Hero’s Journey character 
 
 ------------------
 
+A live version of the Swordsman Character Generator is available at:
+
+https://www.oldschooladventures.org/hero/more/classes/swordsman/
+
+
+------------------------
+
+
+
+Update 1.02: 2021-03-13
+
+A launch page for Swordsman Character Generator has been added.
+
 
 
 Update 1.01: 2021-03-06
